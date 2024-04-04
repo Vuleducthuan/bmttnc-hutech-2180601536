@@ -88,20 +88,20 @@ def playfair_decrypt():
     decrypted_text = playfair_cipher.playfair_decrypt(cipher_text,playfair_matrix)
     return jsonify({'decrypted_text': decrypted_text})
 
-trasposition_cipher = TranspositionCipher
+trasposition_cipher = TranspositionCipher()
 @app.route('/api/trasposition/encrypt', methods=['POST'])
 def trasposition_encrypt():
-    data = request.get_json
-    plain_text = data.get('plain text')
-    key= int(data.get('key'))
+    data = request.json
+    plain_text = data['plain_text']
+    key= int(data['key'])
     encrypted_text = trasposition_cipher.encrypt(plain_text, key)
     return jsonify({'encrypted_text':encrypted_text})
     
 @app.route('/api/trasposition/decrypt', methods=['POST'])
 def transposition_decrypt():
-    data = request.get_json
-    plain_text = data.get('plain text')
-    key= int(data.get('key'))
+    data = request.json
+    plain_text = data['cipher_text']
+    key= int(data['key'])
     decrypted_text = trasposition_cipher.decrypt(plain_text, key)
     return jsonify({'decrypted_text': decrypted_text})
     

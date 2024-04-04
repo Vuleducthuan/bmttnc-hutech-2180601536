@@ -7,9 +7,10 @@ class TranspositionCipher:
         for col in range(key):
             pointer = col
             while pointer < len(text):
-                encrypted_text += text[pointer]
+                encrypt_text += text[pointer]
                 pointer += key
         return encrypt_text
+    
     def decrypt(self, text, key):
         decrypted_text = [''] *key
         row, col = 0, 0

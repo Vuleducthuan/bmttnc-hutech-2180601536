@@ -22,7 +22,8 @@ class PlayFairCipher:
     def find_letter_coords (self, matrix, letter): 
         for row in range (len (matrix)): 
             for col in range (len (matrix[row])): 
-                if matrix [row][col] == letter: return row, col
+                if matrix [row][col] == letter: 
+                    return row, col
                 
     def playfair_encrypt(self, plain_text : str, matrix):
         plain_text = plain_text.replace("J", "I")
@@ -37,7 +38,7 @@ class PlayFairCipher:
             row2, col2 =self.find_letter_coords (matrix, pair [1])
             
             if row1 == row2:
-                encrypted_text += matrix[(row1+1) %5] [col1]+ matrix [row2] [(col2 + 1) %5]
+                encrypted_text += matrix[row1] [(col1+1)%5]+ matrix [row2] [(col2 + 1) %5]
             elif col1 == col2:
                 encrypted_text += matrix[(row1 + 1) %5] [col1] + matrix [(row2+1) %5] [col2]
             else:
