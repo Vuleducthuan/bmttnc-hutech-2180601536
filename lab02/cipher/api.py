@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify
 from caesar import CaesarCipher
-
+from cipher.transposition import TranspositionCipher
 import vigenere as vigenere_cipher
 import playfair as playfair_cipher
 import raifence as railfence_cipher
+
 
 app= Flask (__name__)
 
@@ -82,6 +83,24 @@ def playfair_decrypt():
     playfair_matrix =playfair_cipher.playfair_matrix(key)
     decrypted_text = playfair_cipher.playfair_decrypt(cipher_text,playfair_matrix)
     return jsonify({'decrypted_text': decrypted_text})
+
+trasposition_cipher = TranspositionCipher
+@app.route('/api/trasposition/encrypt', methods=['POST'])
+def trasposition_encrypt():
+    data = request.get_json
+    plain_text = data.get('plain text')
+    key= int(data.get('key'))
+    encrypted_text = trasposition_cipher.encrypt(plain_text, key)
+    return jsonify({'encrypted_text':encrypted_text})
+    
+@app.route('/api/trasposition/decrypt', methods=['POST'])
+def transposition_decrypt():
+    data = request.get_json
+    plain_text = data.get('plain text')
+    key= int(data.get('key'))
+    decrypted_text = trasposition_cipher.decrypt(plain_text, key)
+    return jsonify({'decrypted_text': decrypted_text})
+    
 
 #main function
 if __name__ == "__main__":
