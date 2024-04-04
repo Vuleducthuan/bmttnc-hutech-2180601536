@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
 from caesar import CaesarCipher
-from cipher.transposition import TranspositionCipher
 import vigenere as vigenere_cipher
 import playfair as playfair_cipher
 import raifence as railfence_cipher
 
+from transposition import TranspositionCipher
+from raifence import RailFenceCipher
+
+from vigenere import VigenereCipher
 
 app= Flask (__name__)
 
@@ -27,6 +30,7 @@ def caesar_decrypt():
     decrypted_text = caesar_cipher.decrypt_text(cipher_text, key)
     return jsonify({'decrypted message': decrypted_text})
 
+railfence_cipher = RailFenceCipher()
 @app.route('/api/railfence/encrypt', methods=['POST'])
 def encrypt():
     data = request.json
@@ -43,6 +47,7 @@ def decrypt():
     decrypted_text = railfence_cipher.rail_fence_decrypt(cipher_text, key)
     return jsonify({'decrypted_text': decrypted_text})
 
+vigenere_cipher = VigenereCipher()
 @app.route('/api/vigenere/encrypt', methods=['POST'])
 def vigenere_encrypt():
     data =request.json
@@ -105,4 +110,4 @@ def transposition_decrypt():
 #main function
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
-    
+        
