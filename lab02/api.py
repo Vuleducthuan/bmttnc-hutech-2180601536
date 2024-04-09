@@ -1,11 +1,11 @@
 from flask import Flask, request, jsonify
-from caesar import CaesarCipher
+from cipher.caesar import CaesarCipher
 
-from transposition import TranspositionCipher
-from raifence import RailFenceCipher
-from playfair import PlayFairCipher
+from cipher.transposition import TranspositionCipher
+from cipher.raifence import RailFenceCipher
+from cipher.playfair import PlayFairCipher
 
-from vigenere import VigenereCipher
+from cipher.vigenere import VigenereCipher
 
 app= Flask (__name__)
 

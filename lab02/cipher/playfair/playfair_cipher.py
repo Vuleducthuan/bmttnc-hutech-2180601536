@@ -1,6 +1,3 @@
-from numpy import matrix
-
-
 class PlayFairCipher:
     def __init__(self) -> None:
         pass
